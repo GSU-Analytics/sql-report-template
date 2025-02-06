@@ -13,12 +13,34 @@ The **SQL Report Template** is a lightweight framework for executing SQL queries
 ## Prerequisites
 - Python 3.10+
 - Oracle Instant Client
-- Conda for dependency management
+- Conda environment for dependency management
+
+## Using This Repository as a Template
+This repository is available as a GitHub template, allowing users to quickly generate a new project based on its structure.
+
+### **Method 1: Use GitHub's Template Feature**
+1. Go to the template repository: [SQL Report Template](https://github.com/GSU-Analytics/sql-report-template)
+2. Click **"Use this template"** (green button).
+3. Enter a name for your new repository and click **"Create repository from template"**.
+4. Clone your new repository and follow the setup instructions.
+
+### **Method 2: Clone the Repository Manually**
+If you prefer to start with this template manually:
+```bash
+git clone https://github.com/GSU-Analytics/sql-report-template.git my-new-report
+cd my-new-report
+rm -rf .git  # Removes existing Git history
+```
+Then, initialize your new repository:
+```bash
+git init
+```
+Follow the installation steps to set up the environment and configure the database.
 
 ## Installation
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/sql-report-template.git
+git clone https://github.com/GSU-Analytics/sql-report-template.git
 cd sql-report-template
 ```
 
@@ -28,13 +50,9 @@ Using Conda:
 conda env create -f environment.yml
 conda activate sql-report-env
 ```
-Using pip (alternative method):
-```bash
-pip install -r requirements.txt
-```
 
 ### 3. Configure Database Connection
-Edit the `config_example.py` file to include your Oracle database credentials. Save the file as `config.py`.
+Edit the `config.py` file to include your Oracle database credentials:
 ```python
 # config.py
 user = "your_username"
