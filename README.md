@@ -106,19 +106,24 @@ The generated Excel report will include:
 
 ## File Structure
 ```
-sql-report-template/
-│── report_generator/
-│   ├── __init__.py
-│   ├── query_runner.py  # Executes SQL queries
-│   ├── excel_report_generator.py  # Generates Excel reports
-│── working_queries/
-│   ├── sheet1.sql  # Example SQL file
-│   ├── sheet2.sql
-│── report/  # Output directory (ignored in .gitignore)
-│── config.py  # Database configuration
-│── main.py  # Script entry point
-│── environment.yml  # Conda environment setup
-│── README.md  # Documentation
+├── report                      # Output directory (ignored in .gitignore)
+├── report_config               # Files for updating your report configuration
+│   ├── intro_text.txt          #    Change this to change your introduction sheet
+│   └── user_config.yaml        #    Store your user credentials here with set-user-credentials
+├── src
+│   └── sql_reporter
+│       ├── report_generator
+│       │   ├── __init__.py
+│       │   └── query_runner.py # Executes SQL queries
+│       ├── __init__.py         # CLI tool source code
+│       └── config_utils.py     # Utilities for configuring the report
+├── working_queries
+│   ├── sheet1.sql              # Example SQL file
+│   └── sheet2.sql              # Example SQL file
+├── environment.yml             # Conda environment setup
+├── pyproject.toml              # For building the package with Python
+├── README.md                   # Documentation
+└── uv.lock                     # For building the package with Python
 ```
 
 ## Troubleshooting
