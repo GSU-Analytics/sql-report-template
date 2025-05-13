@@ -51,20 +51,39 @@ conda env create -f environment.yml
 conda activate sql-report-env
 ```
 
-### 3. Configure Database Connection
-Edit the `config.py` file to include your Oracle database credentials:
-```python
-# config.py
-user = "your_username"
-dsn = "your_dsn"
-lib_dir = "/path/to/oracle/lib"
+### 3. Install the Package
+Using pip:
+```bash
+pip install -e .
 ```
-Alternatively, you can store credentials in a `.env` file and modify `config.py` to read from environment variables.
+
+- Note: This installs the package in "editable" mode. You can make any changes you want to the source code, in `/src/`, and your commandline scripts will reflect those changes.
+
+### 3. Test your Install and Enter Your Credentials
+Now, run:
+```bash
+sql-reporter --help
+```
+
+If you see something like the output below, you are ready to go:
+
+```txt
+Usage: sql-reporter [OPTIONS] COMMAND [ARGS]...
+
+  A tool for turning SQL queries into standardized Excel files. Powered by
+  Python under the hood. Customize the Python code to make your reports
+  exactly how you like them.
+```
+
+Run the following command to enter your credentials:
+```bash
+sql-reporter set-user-credentials
+```
 
 ## Usage
 ### Running the Report Generator
 ```bash
-python main.py --sql_folder_path="./working_queries" --output_file="./report/Program_Report.xlsx"
+sql-reporter execute --sql_folder_path="./working_queries" --output_file="./report/Program_Report.xlsx"
 ```
 #### Command-Line Arguments:
 | Argument            | Description                                                   | Default                          |

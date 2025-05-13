@@ -8,8 +8,4 @@ channels:
   - conda-forge
 dependencies:
   - python>=3.10
-  - pandas
-  - openpyxl
   - pip
-  - pip:
-      - git+https://github.com/GSU-Analytics/light_conn.git
