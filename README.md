@@ -51,20 +51,39 @@ conda env create -f environment.yml
 conda activate sql-report-env
 ```
 
-### 3. Configure Database Connection
-Edit the `config.py` file to include your Oracle database credentials:
-```python
-# config.py
-user = "your_username"
-dsn = "your_dsn"
-lib_dir = "/path/to/oracle/lib"
+### 3. Install the Package
+Using pip:
+```bash
+pip install -e .
 ```
-Alternatively, you can store credentials in a `.env` file and modify `config.py` to read from environment variables.
+
+- Note: This installs the package in "editable" mode. You can make any changes you want to the source code, in `/src/`, and your commandline scripts will reflect those changes.
+
+### 3. Test your Install and Enter Your Credentials
+Now, run:
+```bash
+sql-reporter --help
+```
+
+If you see something like the output below, you are ready to go:
+
+```txt
+Usage: sql-reporter [OPTIONS] COMMAND [ARGS]...
+
+  A tool for turning SQL queries into standardized Excel files. Powered by
+  Python under the hood. Customize the Python code to make your reports
+  exactly how you like them.
+```
+
+Run the following command to enter your credentials:
+```bash
+sql-reporter set-user-credentials
+```
 
 ## Usage
 ### Running the Report Generator
 ```bash
-python main.py --sql_folder_path="./working_queries" --output_file="./report/Program_Report.xlsx"
+sql-reporter execute --sql_folder_path="./working_queries" --output_file="./report/Program_Report.xlsx"
 ```
 #### Command-Line Arguments:
 | Argument            | Description                                                   | Default                          |
@@ -87,19 +106,24 @@ The generated Excel report will include:
 
 ## File Structure
 ```
-sql-report-template/
-│── report_generator/
-│   ├── __init__.py
-│   ├── query_runner.py  # Executes SQL queries
-│   ├── excel_report_generator.py  # Generates Excel reports
-│── working_queries/
-│   ├── sheet1.sql  # Example SQL file
-│   ├── sheet2.sql
-│── report/  # Output directory (ignored in .gitignore)
-│── config.py  # Database configuration
-│── main.py  # Script entry point
-│── environment.yml  # Conda environment setup
-│── README.md  # Documentation
+├── report                      # Output directory (ignored in .gitignore)
+├── report_config               # Files for updating your report configuration
+│   ├── intro_text.txt          #    Change this to change your introduction sheet
+│   └── user_config.yaml        #    Store your user credentials here with set-user-credentials
+├── src
+│   └── sql_reporter
+│       ├── report_generator
+│       │   ├── __init__.py
+│       │   └── query_runner.py # Executes SQL queries
+│       ├── __init__.py         # CLI tool source code
+│       └── config_utils.py     # Utilities for configuring the report
+├── working_queries
+│   ├── sheet1.sql              # Example SQL file
+│   └── sheet2.sql              # Example SQL file
+├── environment.yml             # Conda environment setup
+├── pyproject.toml              # For building the package with Python
+├── README.md                   # Documentation
+└── uv.lock                     # For building the package with Python
 ```
 
 ## Troubleshooting

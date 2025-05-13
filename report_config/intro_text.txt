@@ -1,0 +1,5 @@
+This workbook contains detailed enrollment and retention reports for the program.
+Report generated on: 02-04-2025.
+
+Contents:
+Each SQL file in the specified folder has been processed into its own sheet.
