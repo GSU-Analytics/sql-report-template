@@ -5,9 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "excel-report-maker @ git+https://github.com/GSU-Analytics/excel-report-maker",
+    "lightoracle @ git+https://github.com/GSU-Analytics/light_conn",
     "click>=8.2.0",
-    "excel-report-maker",
-    "lightoracle",
     "openpyxl>=3.1.5",
     "pandas>=2.2.3",
     "pyyaml>=6.0.2",
