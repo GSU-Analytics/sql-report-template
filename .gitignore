@@ -4,3 +4,5 @@ __pycache__/
 *.xlsx
 *.csv
 **.DS_Store
+build/
+**.egg-info/
