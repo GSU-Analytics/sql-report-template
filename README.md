@@ -59,7 +59,7 @@ pip install -e .
 
 - Note: This installs the package in "editable" mode. You can make any changes you want to the source code, in `/src/`, and your commandline scripts will reflect those changes.
 
-### 3. Test your Install and Enter Your Credentials
+### 4. Test your Install and Enter Your Credentials
 Now, run:
 ```bash
 sql-reporter --help
