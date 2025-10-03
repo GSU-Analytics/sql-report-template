@@ -39,12 +39,10 @@ Usage:
 
 import click
 import os
-import argparse
-import yaml
 from pathlib import Path
 from excel_report_maker import ExcelReportGenerator
 from .report_generator import QueryRunner
-from .config_utils import set_user_credentials, load_user_credentials, load_intro_text
+from .config_utils import set_user_credentials, load_user_credentials, load_intro_text, user_friendly_load_graph_package
 
 # Introduction text lines.
 INTRO_TEXT = load_intro_text('report_config/intro_text.txt')
@@ -62,7 +60,8 @@ def sql_reporter():
 @sql_reporter.command('execute', short_help='Generate report from queries in SQL_FOLDER_PATH')
 @click.option('-p', '--sql_folder_path', type=str, default='./working_queries', help="Path to the folder containing SQL files (default: ./working_queries)")
 @click.option('-o', '--output_file',     type=str, default='./report/Program_Report.xlsx', help="Path to save the output Excel report (default: ./report/Program_Report.xlsx)")
-def execute(sql_folder_path: str, output_file: str):
+@click.option('-g', '--graph-package',   type=str, help="Path to a Python package containing visualization plugin code (default: ./graph-module)")
+def execute(sql_folder_path: str, output_file: str, graph_package: str):
     '''Execute all of the SQL queries in --sql_folder_path and use the results to generate a report.
     The report will be saved to --output_file.
     '''
@@ -72,8 +71,14 @@ def execute(sql_folder_path: str, output_file: str):
         user = click.prompt('Please enter your Oracle username', type=str)
         dsn = click.prompt('Please enter your Oracle Data Source Name (DSN)', type=str)
         lib_dir = click.prompt('Please enter your path to Oracle Instant Client libraries e.g. /path/to/oracle/lib', type=str)
-        click.echo('Got your config')
+        click.echo('Found your config!')
         set_user_credentials(user, dsn, lib_dir)
+
+    # Attempt to load any custom user-friendly graphing code
+    if graph_package:
+        graphing_functions = user_friendly_load_graph_package(graph_package)
+    else:
+        graphing_functions = None
 
     # Load user credentials
     user_credentials = load_user_credentials()
@@ -89,7 +94,7 @@ def execute(sql_folder_path: str, output_file: str):
 
     # Create and generate the workbook
     report_generator = ExcelReportGenerator(results, INTRO_TEXT)
-    report_generator.generate_workbook(output_file)
+    report_generator.generate_workbook(output_file, graphing_functions)
 
 
 @sql_reporter.command('set-user-credentials')
