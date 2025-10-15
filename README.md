@@ -3,14 +3,14 @@
 ## Overview
 The **SQL Report Template** is a lightweight framework for executing SQL queries against an Oracle database and generating an Excel report with the results. Users can define SQL queries in separate `.sql` files, run them using the script, and receive a structured Excel report with multiple sheets corresponding to the queries.
 
-## Features
+### Features
 - Executes multiple SQL queries from a specified folder.
 - Connects to an Oracle database using `lightoracle`.
 - Generates an Excel report with separate sheets for each SQL file.
 - Automatically formats tables and includes an introduction sheet.
 - Supports command-line arguments for input and output customization.
 
-## Prerequisites
+### Prerequisites
 - Python 3.10+
 - Oracle Instant Client
 - Conda environment for dependency management

@@ -10,4 +10,5 @@ SELECT
     ROUND(SUM(CASE WHEN c.grad_term IS NOT NULL THEN 1 ELSE 0 END) / COUNT(*), 2) AS "Graduation Rate"
 FROM edwprd.sdmcohortfr_us c
 WHERE c.ft_pt_ind = 'FT' 
-AND c.term = '201808';
+AND c.term = '201808'
+GROUP BY c.term;
