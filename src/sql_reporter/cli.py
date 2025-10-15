@@ -76,7 +76,7 @@ def execute(sql_folder_path: str, output_file: str, intro_path: str, config_file
         intro_text = load_intro_text(intro_path)
     except Exception as e:
         click.echo(f'Could not load your file: {str(intro_path)}')
-        intro_text = 'Here is some sample text. \n\n Create an introductory text file and load it with --intro_path to replace this.'
+        intro_text = ['Here is some sample text', '', 'Create an introductory text file and load it with --intro_path to replace this.']
 
     # Run the report generator
     make_report(sql_folder_path, output_file, intro_text)
