@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-sql-reporter = "sql_reporter:sql_reporter"  
+sql-reporter = "sql_reporter.cli:sql_reporter"  
 
 [tool.uv.sources]
 excel-report-maker = { git = "https://github.com/GSU-Analytics/excel-report-maker.git" }

@@ -2,6 +2,7 @@
 
 import os
 import glob
+from pathlib import Path
 from lightoracle import LightOracleConnection
 
 class QueryRunner:
@@ -130,9 +131,10 @@ class QueryRunner:
         """
         all_results = {}
         # Use glob to find all .sql files in the folder.
-        for file_path in glob.glob(os.path.join(folder_path, '*.sql')):
+        sql_files = sorted(Path(folder_path).glob('*.sql'))
+        for file_path in sql_files:
             # Use the file name (without extension) as the sheet name.
-            sheet_name = os.path.splitext(os.path.basename(file_path))[0]
+            sheet_name = file_path.stem
             file_results = self.run_queries_from_file(file_path)
             # Make a copy of the results for this file.
             all_results[sheet_name] = file_results.copy()
