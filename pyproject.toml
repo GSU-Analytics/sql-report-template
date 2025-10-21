@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "excel-report-maker @ git+https://github.com/GSU-Analytics/excel-report-maker",
+    "excel-report-maker",
     "lightoracle @ git+https://github.com/GSU-Analytics/light_conn",
     "click>=8.2.0",
     "openpyxl>=3.1.5",
@@ -17,5 +17,5 @@ dependencies = [
 sql-reporter = "sql_reporter.cli:sql_reporter"  
 
 [tool.uv.sources]
-excel-report-maker = { git = "https://github.com/GSU-Analytics/excel-report-maker.git" }
 lightoracle = { git = "https://github.com/GSU-Analytics/light_conn.git" }
+excel-report-maker = { git = "https://github.com/GSU-Analytics/excel-report-maker.git", rev = "v0.2.0" }
